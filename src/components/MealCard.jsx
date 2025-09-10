@@ -1,7 +1,20 @@
+import CartContext from "../context/CartContext";
 import { currencyFormatter} from "../util/formatting";
+import Button from "./UI/Button";
+import { useContext } from "react";
+
+
+
 
 
 export default function MealCard({meal}) {
+    const mealctx = useContext(CartContext)
+
+
+    function handleClick() {
+        mealctx.addMeal(meal);
+    }
+
     return(
         <div className="meal-item">
             <article>
@@ -12,7 +25,9 @@ export default function MealCard({meal}) {
                     <p className="meal-item-description">{meal.description}</p>
                 </div>
             </article>
-            <p className="meal-item-actions"><button>Add to Cart</button></p>
+            <p className="meal-item-actions">
+                <Button onClick={handleClick}>Add to Cart</Button>
+            </p>
         </div>
     )
 }
