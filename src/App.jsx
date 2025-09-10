@@ -3,16 +3,20 @@ import NavBar from "./components/NavBar";
 import { CartProvider } from "./context/CartContext";
 import Modal from "./components/UI/Modal";
 import { useState } from "react";
+import { UserProgressContextProvider } from "./context/UserProgressContext";
+import Cart from "./components/UI/Cart";
 
 function App() {
   return (
-    
-    <CartProvider>
-      <div>
-        <NavBar/>
-        <Meals/>
-      </div>
-    </CartProvider>
+    <UserProgressContextProvider>
+      <CartProvider>
+        <div>
+          <NavBar/>
+          <Meals/>
+          <Cart/>
+        </div>
+      </CartProvider>
+    </UserProgressContextProvider>
     
   );
 
