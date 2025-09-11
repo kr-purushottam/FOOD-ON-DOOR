@@ -1,7 +1,7 @@
 import { useContext } from "react"
 import CartContext from "../../context/CartContext"
 
-export default function CartItems({id, name, quantity, price, onIncrease, onDescrease}) {
+export default function CartItems({ name, quantity, price, onIncrease, onDescrease}) {
     const cartCtx = useContext(CartContext);
 
     return(

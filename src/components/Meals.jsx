@@ -1,11 +1,14 @@
 import { useContext, useEffect, useState } from "react";
 import MealCard from "./MealCard";
+import { OrbitProgress } from "react-loading-indicators";
 
 export default function Meals() {
     const[loadedMeals, setLoadedMeals] = useState([]);
+    const[isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
         async function fetchMeal() {
+            setIsLoading(true);
             try{
                 const response = await fetch("http://localhost:3000/meals");
                 if(!response.ok) {
@@ -17,15 +20,22 @@ export default function Meals() {
             catch(err) {
                 console.log(err);
             }
+            finally {
+                setIsLoading(false);
+            }
         }
         fetchMeal();
     },[])
     
     return(
-        <ul id="meals">
+        <div>
+            {isLoading ? <div style={{height: "100vh", display: "flex", justifyContent: "center", alignItems: "center"}}><OrbitProgress dense color="#ffc404" size="medium" text="" textColor="" /></div> : <ul id="meals">
             {loadedMeals.map((meal) => (
                 <li key={meal.id}><MealCard meal={meal}/></li>
             )) }
-        </ul>
+        </ul>}
+        </div>
+        
+        
     )
 }
