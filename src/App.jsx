@@ -4,7 +4,8 @@ import { CartProvider } from "./context/CartContext";
 import Modal from "./components/UI/Modal";
 import { useState } from "react";
 import { UserProgressContextProvider } from "./context/UserProgressContext";
-import Cart from "./components/UI/Cart";
+import Cart from "./components/Cart";
+import Checkout from "./components/CheckOut";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
           <NavBar/>
           <Meals/>
           <Cart/>
+          <Checkout/>
         </div>
       </CartProvider>
     </UserProgressContextProvider>

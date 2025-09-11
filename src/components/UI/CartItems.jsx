@@ -1,23 +1,16 @@
 import { useContext } from "react"
 import CartContext from "../../context/CartContext"
 
-export default function CartItems({name, quantity, price}) {
+export default function CartItems({id, name, quantity, price, onIncrease, onDescrease}) {
     const cartCtx = useContext(CartContext);
 
-    function handleIncreaseButton() {
-        cartCtx.addQuantityByOne(name)
-    }
-
-    function handleDescreaseButton() {
-        cartCtx.reduceQuantityByOne(name)
-    }
     return(
         <li className="cart-item">
             <p>{name} - {quantity} X {price}</p>
             <p className="cart-item-actions">
-                <button onClick={handleDescreaseButton}>-</button>
+                <button onClick={onDescrease}>-</button>
                 <span>{quantity}</span>
-                <button onClick={handleIncreaseButton}>+</button>
+                <button onClick={onIncrease}>+</button>
             </p>
         </li>
 

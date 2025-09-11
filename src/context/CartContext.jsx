@@ -55,25 +55,6 @@ export function CartProvider({children}) {
             return {...state, items : updatedItems}
         }
 
-        if(action.type === "AddQuantity") {
-            const updatedItems = [...state.items];
-            const existingItemIndex =  updatedItems.findIndex(item => item.name === action.mealName);
-            const updatedItem = updatedItems[existingItemIndex];
-            updatedItems[existingItemIndex] = {...updatedItem, quantity : updatedItem.quantity + 1}
-            return { ...state, items: updatedItems };
-        }
-
-        if(action.type === "ReduceQuantity") {
-            const updatedItems = [...state.items];
-            const existingItemIndex =  updatedItems.findIndex(item => item.name === action.mealName);
-            const updatedItem = updatedItems[existingItemIndex];
-            if(updatedItem.quantity === 1) {
-                const newUpdatedItems = updatedItems.filter(item => item.name !== action.mealName)
-                return {...state, items : newUpdatedItems}
-            } 
-            updatedItems[existingItemIndex] = {...updatedItem, quantity : updatedItem.quantity - 1}
-            return { ...state, items: updatedItems };
-        }
         return state;
     }
     
@@ -90,20 +71,12 @@ export function CartProvider({children}) {
         //dispatchCartAction({type : "ITEM_REMOVED", id : id})  --> can also use this as both have same name and allowed in js
     }
 
-    function addQuantityByOne(mealName) {
-        dispatchCartAction({type : "AddQuantity", mealName : mealName})
-    }
-
-    function reduceQuantityByOne(mealName) {
-        dispatchCartAction({type : "ReduceQuantity", mealName : mealName})
-    }
+    
 
     const cartContext = {
         items : cart.items,
         addMeal : addMeal, //added the addMeal property which points to addMeal fn (can be written only addMeal)
         removeMeal : removeMeal, //added the removeMeal property which points to removeMeal fn(can be written only addMeal)
-        addQuantityByOne, 
-        reduceQuantityByOne
     }
 
 
