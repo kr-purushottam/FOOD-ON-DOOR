@@ -25,7 +25,7 @@ export default function Checkout() {
         const fd = new FormData(event.target);
         const customerData = Object.fromEntries(fd.entries());
 
-        fetch('http://localhost:3000/orders', {
+        fetch("https://food-on-door-q4ja.onrender.com/orders", {
             method : "POST",
             headers : {
                 'Content-Type' : 'application/json'

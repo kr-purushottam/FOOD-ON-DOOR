@@ -10,7 +10,8 @@ export default function Meals() {
         async function fetchMeal() {
             setIsLoading(true);
             try{
-                const response = await fetch("http://localhost:3000/meals");
+                const response = await fetch("https://food-on-door-q4ja.onrender.com/meals");
+
                 if(!response.ok) {
                     throw new Error(response.status + " " + response.text);
                 }
